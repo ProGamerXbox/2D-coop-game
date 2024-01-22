@@ -33,8 +33,11 @@ Everytime a player dodges successfully a bullet, he gains a "Su-Pa" token, at 5 
 - how does it play into p2p or cs
 	- players can play against each other with p2p, thus not reliaing on the server to be up and running for them to enjoy their favourite game. Furthermore if they're using p2p they can play without need to connect to a server in some random country 
 	- or they can use client server to play with more people and keep score of their placement history. server client will be ideal for them if they need to be able to connect to the game from anywhere in the world - in other words if they want to play with each 	other when theyre playing over distance. 
-- interface
-	- ![image](img/cars.png)
+
+## interface
+
+![image](img/cars.png)
+
 - Overview:
 	- Players will be preented with a Ready Player One style race, where they will have to race each other while avoiding in game obsitcles. The goal of the game - like any other racing game - will be to come first but there is caviat, the game doesnt only rely on players skill to drive but also to navigate to surrounding environment and adapt to new things. Players will be able to collide with each other (to make it interactive) while also having to dodge the obsticles on the road, this should introduce rational competitevness to the point where they can race on their own while still being forced to interact with other players' cars.   
 
