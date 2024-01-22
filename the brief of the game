@@ -1,3 +1,7 @@
 describe the game
 
-The game is a 2D multiplayer shooting game. We will be using a client-server and some Python to build the game. 
+The game is a 2D multiplayer shooting game. We will be using a client-server and some Python to build the game. it have 3 life, each shot will take one life off from the plater
+
+the client server will based on our personal server
+
+
