@@ -1,9 +1,4 @@
-describe the game
-
-The game is a 2D multiplayer shooting game. We will be using a client-server and some Python to build the game. it have 3 life, each shot will take one life off from the plater
-
-the client server will based on our personal server
-
+# Describe the game
 
 Aplha project: a 2D multiplayer plateformer shooter game. Using client-server. 
 2 players will combat each other using guns, the player can jump, go forwards and backwards and crouch. 
