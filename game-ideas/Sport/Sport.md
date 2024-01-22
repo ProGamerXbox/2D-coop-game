@@ -1,0 +1,5 @@
+[[mini ping pong]]
+[[mini tennis]]
+[[mini football]]
+[[mini hockey]]
+[[mini basketball]]
