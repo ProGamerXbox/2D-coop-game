@@ -35,6 +35,7 @@
 ### Character
 
 - animations / stickman
+- player can flip
 
 ### The Main Menu
 
