@@ -1,11 +1,23 @@
 
 # Breaking down problems
 
+### Libraries
+
+- socket
+- pygame
+- ping
+
 ### Server side
 
 - what needs to be sent to the server
-- 1 server can host one match ?
-    - don't have any solutions for now
+
+- CHALLENGE AT THE END:
+    - 1 server can host one match ?
+        - don't have any solutions for now
+            - multiple lobbies
+
+- server instance
+- showing ping
 
 ### Map
 
@@ -39,6 +51,7 @@
 
 - bullet trajectory
 - fire rate
+- ray casting
 
 ### Physics
 
