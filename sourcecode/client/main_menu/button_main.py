@@ -1,6 +1,6 @@
-import pygame
-import button
-import sys
+import pygame, button, sys, socket
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      #socket initialization
 
 # Function to handle the input window
 def get_user_input(prompts):
