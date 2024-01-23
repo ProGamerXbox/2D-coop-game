@@ -35,7 +35,8 @@
 ### Character
 
 - [ ] animations / stickman
-- [ ] player can flip
+- [ ] player can flip (mirror: left -> right & right -> left)
+- [ ] gravity affects the player
 
 ### The Main Menu
 
