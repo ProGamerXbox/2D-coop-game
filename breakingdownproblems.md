@@ -35,7 +35,6 @@
 
 - animations / stickman
 
-
 ### The Main Menu
 
 - play button 
