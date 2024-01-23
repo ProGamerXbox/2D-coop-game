@@ -18,6 +18,7 @@
 
 - server instance
 - showing ping
+- in-game typing chat
 
 ### Map
 
