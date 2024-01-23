@@ -16,7 +16,7 @@
         - don't have any solutions for now
             - multiple lobbies
 
-- server instance
+[ ] -  server instance
 - showing ping
 - in-game typing chat
 
