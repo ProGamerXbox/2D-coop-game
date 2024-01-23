@@ -75,9 +75,12 @@ while run:
 
     if start_button.draw(screen):
         print('START')
-        prompts = ["Enter the IP:", "Enter username:"]
+        prompts = ["Enter IP:", "Enter username:"]
         user_inputs = get_user_input(prompts)
-        print('User Inputs:', user_inputs)
+        ip = user_inputs[0]
+        username = user_inputs[1]
+        print('IP selected :', ip)
+        print('Username selected :', username)
 
     if exit_button.draw(screen):
         print('EXIT')
