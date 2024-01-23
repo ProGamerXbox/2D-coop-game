@@ -37,7 +37,8 @@
 
 ### The Main Menu
 
-- play button 
+- play button
+- key bindings
     - enter the IP
         - the server determines the mode depending of the number of players connected into the lobby
 
