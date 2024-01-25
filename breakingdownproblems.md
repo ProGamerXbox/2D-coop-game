@@ -33,7 +33,7 @@
     - 1v1
 
 ### Character
-
+for most of this following tutorial was used - [link](https://www.techwithtim.net/tutorials/game-development-with-python/pygame-tutorial/pygame-animation)
 - [ ] animations / stickman
 - [ ] player can flip (mirror: left -> right & right -> left)
 - [ ] gravity affects the player
