@@ -1,27 +1,17 @@
 import pygame
-import os
+from Player1_movement import player_1_movement
+from Player2_movement import player_2_movement
 
 # GENERAL
 FPS = 60
-VEL = 5
 PLAYER_WIDTH, PLAYER_HEIGHT = 136, 115
 WIDTH, HEIGHT = 1600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Project Alpha ©")
 
-isJump = False
-jumpCount = 10
-
-# COLOR
-tBlue = (54,117,136)
-BLACK = (0, 0, 0)
-
-# OBJECT
-WALL = pygame.Rect(0, HEIGHT-25, WIDTH, 25)
-
 # BACKGROUND
 BACKGROUND_IMAGE = pygame.image.load('background.png')
-BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE,(WIDTH, HEIGHT))
+BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE ,(WIDTH, HEIGHT))
 
 # PLAYER 1
 PLAYER1_IMAGE = pygame.image.load('player.png')
@@ -35,28 +25,45 @@ PLAYER_2 = pygame.transform.scale(PLAYER2_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT))
 PlAYER2_JUMPING_IMAGE = pygame.image.load('player_jumping.png')
 PlAYER2_JUMPING = pygame.transform.scale(PlAYER2_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
 
+# MOVEMENT CONFIG
+walkRight = [PLAYER_1]
+walkLeft = [PLAYER_2]
+VEL = 5
+left = False
+right = False
+walkCount = 0
+
+# JUMP SETTINGS
+isJump = False
+jumpCount = 10
 
 
-def draw_window(p1, p2,):
-    WIN.blit(BACKGROUND,(0,0))
-    pygame.draw.rect(WIN, BLACK, WALL)
+
+def draw_window(p1, p2):
+    from Player1_movement import left
+    from Player1_movement import right
+    global walkCount
+    WIN.blit(BACKGROUND, (0, 0))
     WIN.blit(PLAYER_2, (p2.x, p2.y))
-    WIN.blit(PLAYER_1, (p1.x, p1.y))
+
+    if walkCount + 1 >= 27:
+        walkCount = 0
+
+    if left:
+        WIN.blit(PLAYER_2, (p1.x, p1.y))
+        walkCount += 1
+    elif right:
+        WIN.blit(PLAYER_1, (p1.x, p1.y))
+        walkCount += 1
+    else:
+        WIN.blit(PLAYER_1, (p1.x, p1.y))
+
     pygame.display.update()
 
-def player_1_movement(keys_pressed, p1):
-    if keys_pressed[pygame.K_a] and p1.x - VEL > 0 : #LEFT
-        p1.x -= VEL
-    if keys_pressed[pygame.K_d] and p1.x + VEL + p1.width < WIDTH:
-        p1.x += VEL
-
-def player_2_movement(keys_pressed, p2):
-    if keys_pressed[pygame.K_LEFT] and p2.x - VEL > 0:  #LEFT
-        p2.x -= VEL
-    if keys_pressed[pygame.K_RIGHT] and p2.x + VEL + p2.width < WIDTH: #RIGHT
-        p2.x += VEL
-
 def main():
+    global walkCount
+    global right
+    global left
     global jumping, VELOCITY, isJump, jumpCount
     p1 = pygame.Rect(150, HEIGHT-285, PLAYER_WIDTH, PLAYER_HEIGHT)
     p2 = pygame.Rect(1150, HEIGHT-312, PLAYER_WIDTH, PLAYER_HEIGHT)
@@ -71,9 +78,13 @@ def main():
         keys_pressed = pygame.key.get_pressed()
         player_1_movement(keys_pressed, p1)
         player_2_movement(keys_pressed, p2)
+        # JUMPING
         if not(isJump):
             if keys_pressed[pygame.K_w]:
                 isJump = True
+                right = False
+                left = False
+                walkCount = 0
         else:
             if jumpCount >= -10:
                 neg = 1
