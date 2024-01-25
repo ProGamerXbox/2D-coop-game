@@ -50,14 +50,14 @@ def ChangeDir(key_pressed, p1):
     if key_pressed[pygame.K_w]:
         jumping = True
 
-if jumping:
+#if jumping:
 
 
 def player_1_movement(keys_pressed, p1):
-        if keys_pressed[pygame.K_a] and p1.x - VEL > 0 : #LEFT
-            p1.x -= VEL
-        if keys_pressed[pygame.K_d] and p1.x + VEL + p1.width < WIDTH:
-            p1.x += VEL
+    if keys_pressed[pygame.K_a] and p1.x - VEL > 0 : #LEFT
+        p1.x -= VEL
+    if keys_pressed[pygame.K_d] and p1.x + VEL + p1.width < WIDTH:
+        p1.x += VEL
 
 def player_2_movement(keys_pressed, p2):
     if keys_pressed[pygame.K_LEFT] and p2.x - VEL > 0:  #LEFT
