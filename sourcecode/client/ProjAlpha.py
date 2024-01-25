@@ -5,6 +5,11 @@ WIDTH, HEIGHT = 1600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Project Alpha ©")
 
+# JUMPING SETTINGS
+GRAVITY = 1
+JUMP_HEIGHT = 20
+
+
 # COLOR
 tBlue = (54,117,136)
 BLACK = (0, 0, 0)
@@ -31,6 +36,8 @@ PLAYER1_JUMPING = (pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH,P
 PLAYER2_IMAGE = pygame.image.load('player1.png')
 PLAYER_2 = pygame.transform.scale(PLAYER2_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT))
 
+jumping = False
+
 
 def draw_window(p1, p2,):
     WIN.blit(BACKGROUND,(0,0))
@@ -38,6 +45,13 @@ def draw_window(p1, p2,):
     WIN.blit(PLAYER_2, (p2.x, p2.y))
     WIN.blit(PLAYER_1, (p1.x, p1.y))
     pygame.display.update()
+
+def ChangeDir(key_pressed, p1):
+    if key_pressed[pygame.K_w]:
+        jumping = True
+
+if jumping:
+
 
 def player_1_movement(keys_pressed, p1):
         if keys_pressed[pygame.K_a] and p1.x - VEL > 0 : #LEFT
@@ -65,7 +79,7 @@ def main():
         keys_pressed = pygame.key.get_pressed()
         player_1_movement(keys_pressed, p1)
         player_2_movement(keys_pressed, p2)
-
+        ChangeDir(keys_pressed,p1)
 
         draw_window(p1, p2)
 
