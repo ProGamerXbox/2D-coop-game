@@ -1,23 +1,20 @@
 import pygame
 import os
 
-WIDTH, HEIGHT = 1600, 900
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Project Alpha ©")
-
-# JUMPING SETTINGS
-GRAVITY = 1
-JUMP_HEIGHT = 20
-
-
-# COLOR
-tBlue = (54,117,136)
-BLACK = (0, 0, 0)
-
 # GENERAL
 FPS = 60
 VEL = 5
 PLAYER_WIDTH, PLAYER_HEIGHT = 136, 115
+WIDTH, HEIGHT = 1600, 900
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Project Alpha ©")
+
+isJump = False
+jumpCount = 10
+
+# COLOR
+tBlue = (54,117,136)
+BLACK = (0, 0, 0)
 
 # OBJECT
 WALL = pygame.Rect(0, HEIGHT-25, WIDTH, 25)
@@ -27,16 +24,17 @@ BACKGROUND_IMAGE = pygame.image.load('background.png')
 BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE,(WIDTH, HEIGHT))
 
 # PLAYER 1
-PLAYER1_IMAGE = pygame.image.load('player1.png')
+PLAYER1_IMAGE = pygame.image.load('player.png')
 PLAYER_1 = pygame.transform.flip(pygame.transform.scale(PLAYER1_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
-PLAYER1_JUMPING_IMAGE = pygame.image.load('player1_jumping.png')
-PLAYER1_JUMPING = (pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)))
+PLAYER1_JUMPING_IMAGE = pygame.image.load('player_jumping.png')
+PLAYER1_JUMPING = pygame.transform.flip(pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
 
 # PLAYER 2
-PLAYER2_IMAGE = pygame.image.load('player1.png')
+PLAYER2_IMAGE = pygame.image.load('player.png')
 PLAYER_2 = pygame.transform.scale(PLAYER2_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT))
+PlAYER2_JUMPING_IMAGE = pygame.image.load('player_jumping.png')
+PlAYER2_JUMPING = pygame.transform.scale(PlAYER2_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
 
-jumping = False
 
 
 def draw_window(p1, p2,):
@@ -45,13 +43,6 @@ def draw_window(p1, p2,):
     WIN.blit(PLAYER_2, (p2.x, p2.y))
     WIN.blit(PLAYER_1, (p1.x, p1.y))
     pygame.display.update()
-
-def ChangeDir(key_pressed, p1):
-    if key_pressed[pygame.K_w]:
-        jumping = True
-
-#if jumping:
-
 
 def player_1_movement(keys_pressed, p1):
     if keys_pressed[pygame.K_a] and p1.x - VEL > 0 : #LEFT
@@ -66,6 +57,7 @@ def player_2_movement(keys_pressed, p2):
         p2.x += VEL
 
 def main():
+    global jumping, VELOCITY, isJump, jumpCount
     p1 = pygame.Rect(150, HEIGHT-285, PLAYER_WIDTH, PLAYER_HEIGHT)
     p2 = pygame.Rect(1150, HEIGHT-312, PLAYER_WIDTH, PLAYER_HEIGHT)
     clock = pygame.time.Clock()
@@ -79,9 +71,23 @@ def main():
         keys_pressed = pygame.key.get_pressed()
         player_1_movement(keys_pressed, p1)
         player_2_movement(keys_pressed, p2)
-        ChangeDir(keys_pressed,p1)
+        if not(isJump):
+            if keys_pressed[pygame.K_w]:
+                isJump = True
+        else:
+            if jumpCount >= -10:
+                neg = 1
+                if jumpCount < 0:
+                    neg = -1
+                p1.y -= (jumpCount**2) * 0.5 * neg
+                jumpCount -= 1
+            else:
+                isJump = False
+                jumpCount = 10
 
         draw_window(p1, p2)
+
+
 
     pygame.quit()
 
