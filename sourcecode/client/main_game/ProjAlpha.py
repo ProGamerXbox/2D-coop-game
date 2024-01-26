@@ -15,29 +15,29 @@ gravity = 50
 
 
 # BACKGROUND
-BACKGROUND_IMAGE = pygame.image.load('background.png')
+BACKGROUND_IMAGE = pygame.image.load('img/background.png')
 BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE ,(WIDTH, HEIGHT))
 
 # PLATFORMS
-PLATFORM1_IMAGE = pygame.image.load('platform1.png')
+PLATFORM1_IMAGE = pygame.image.load('img/platform1.png')
 PLATFORM_1 = pygame.transform.scale(PLATFORM1_IMAGE, (173,13))
 
 
 # PLAYER 1
-PLAYER1_IMAGE = pygame.image.load('player_shooting.png')
+PLAYER1_IMAGE = pygame.image.load('img/player_shooting.png')
 PLAYER_1 = pygame.transform.scale(PLAYER1_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
-PLAYER1_JUMPING_IMAGE = pygame.image.load('player_running.png')
+PLAYER1_JUMPING_IMAGE = pygame.image.load('img/player_running.png')
 PLAYER1_JUMPING = pygame.transform.flip(pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
-PLAYER1_RUNNING_IMAGE = pygame.image.load('player_running1.png')
+PLAYER1_RUNNING_IMAGE = pygame.image.load('img/player_running1.png')
 PLAYER1_RUNNING = pygame.transform.flip(pygame.transform.scale(PLAYER1_RUNNING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
 
 
 # PLAYER 2
-PLAYER2_IMAGE = pygame.image.load('player_shooting.png')
+PLAYER2_IMAGE = pygame.image.load('img/player_shooting.png')
 PLAYER_2 = pygame.transform.flip(pygame.transform.scale(PLAYER2_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT)), True, False)
-PlAYER2_JUMPING_IMAGE = pygame.image.load('player_running.png')
+PlAYER2_JUMPING_IMAGE = pygame.image.load('img/player_running.png')
 PlAYER2_JUMPING = pygame.transform.scale(PlAYER2_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
-PLAYER2_RUNNING_IMAGE = pygame.image.load('player_running1.png')
+PLAYER2_RUNNING_IMAGE = pygame.image.load('img/player_running1.png')
 PLAYER2_RUNNING = pygame.transform.scale(PLAYER2_RUNNING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
 
 
@@ -99,6 +99,7 @@ def main():
     p2 = pygame.Rect(1150, 589, PLAYER_WIDTH, PLAYER_HEIGHT) # LEFT PLAYER
     clock = pygame.time.Clock()
     run = True
+    
     while run:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -113,6 +114,24 @@ def main():
 
         draw_window(p1, p2)
 
+        def Player1_jump(keys_pressed):
+
+            isJump = False
+            jumpCount = 10
+
+            if not (isJump):
+                if keys_pressed[pygame.K_w]:
+                    isJump = True
+            else:
+                if jumpCount >= -10:
+                    neg = 1
+                    if jumpCount < 0:
+                        neg = -1
+                    p1.y -= (jumpCount ** 2) * 0.5 * neg
+                    jumpCount -= 1
+                else:
+                    isJump = False
+                    jumpCount = 10
 
 
     pygame.quit()

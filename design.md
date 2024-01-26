@@ -15,21 +15,32 @@
 ### Map
 
 - Map size should change depending of the numbers of people in the lobby, a small map for a 1v1, a medium map for a 2v2 or a 1v1v1 and a large map for a 3v3 match.
-- 1v1v1v1v1 sould not be possibke
+- 1v1v1v1v1 sould not be possible
 
 ### Character
 
 - the sprite has animations
+    - draw several png images
 - gravity implementation
+    - simple physics
 
 ### The Main Menu
 
 - the user inputs the IP of the server and username that should be used
+    - IP used to connect to the server using socket librabry
+    - username will be the named displayed to other players
 
 ### Two hitboxs
 
 - [ ] the actual hitbox (when the player is being hit)
 - [ ] the checking hitbox (when the player successfully dodge a bullet)
+
+- real hitbox :
+    - the hitbox used to check if the player has been hit
+
+- crouch hitbox:
+    - the hitbox used to check if a player has successfully dodged a shot
+    - the server checks it
 
 ### bullet
 

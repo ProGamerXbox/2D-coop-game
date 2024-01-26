@@ -15,6 +15,11 @@
 - Overview:
 	- A 2D multiplayer platformer shooter game, in 2D side view. Using client-server, the client has the option to choose what servers to connect to. The server will be accessible from anywhere in the world and anyone can be running their own server by running the 	server python file. 2 or more players - at the moment we are focusing on the 2 player aspect, if we can, we would like the map to change depending on the number of players fighting, for example, 4 players, so a 2v2 combat will have a medium size map and a 3v3 	match would be a much 	larger map - will combat each other using a simple gun which fires in straight line. Each player has 3 lives, when a player is touched by a bullet, he looses 1 life. If the players has been shot 3 times, the player dies. The player can 	jump, go forwards, backwards and crouch (crouch can be used to avoid bullets' impact). Everytime a player dodges successfully a bullet, he gains a "Su-Pa" token, at 5 "Su-Pa" tokens, the player can use "mirror shield" to deflect opponents' bullet thus mirroring 	it pathway.
 
+- analysis:
+	- server/client
+		- what should be trusted from the client ?
+			- possible source code
+
 ![alphaproject](img/alphaproject1.png)
 
 ![alphaproject](img/alphaproject2.png)
