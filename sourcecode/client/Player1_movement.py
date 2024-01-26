@@ -1,4 +1,6 @@
-import pygame
+import pygamefile
+
+
 WIDTH, HEIGHT = 1600, 900
 
 # MOVEMENT SETTINGS
@@ -15,7 +17,7 @@ def gravity(p1):
     acc += 5
     if p1.y > HEIGHT+50:
         p1.x = 150
-        p1.y = 627
+        p1.y = 615
 
 
 # MOVEMENT

@@ -15,7 +15,7 @@ def gravity(p2):
     acc += 5
     if p2.y > HEIGHT+50:
         p2.x = 1150
-        p2.y = 602
+        p2.y = 589
 
 # CONTROLS
 def player_2_movement(keys_pressed, p2):

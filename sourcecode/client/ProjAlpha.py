@@ -24,17 +24,21 @@ PLATFORM_1 = pygame.transform.scale(PLATFORM1_IMAGE, (173,13))
 
 
 # PLAYER 1
-PLAYER1_IMAGE = pygame.image.load('player.png')
+PLAYER1_IMAGE = pygame.image.load('player_shooting.png')
 PLAYER_1 = pygame.transform.scale(PLAYER1_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
-PLAYER1_JUMPING_IMAGE = pygame.image.load('player_jumping.png')
+PLAYER1_JUMPING_IMAGE = pygame.image.load('player_running.png')
 PLAYER1_JUMPING = pygame.transform.flip(pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
+PLAYER1_RUNNING_IMAGE = pygame.image.load('player_running1.png')
+PLAYER1_RUNNING = pygame.transform.flip(pygame.transform.scale(PLAYER1_RUNNING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
 
 
 # PLAYER 2
-PLAYER2_IMAGE = pygame.image.load('player.png')
+PLAYER2_IMAGE = pygame.image.load('player_shooting.png')
 PLAYER_2 = pygame.transform.flip(pygame.transform.scale(PLAYER2_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT)), True, False)
-PlAYER2_JUMPING_IMAGE = pygame.image.load('player_jumping.png')
+PlAYER2_JUMPING_IMAGE = pygame.image.load('player_running.png')
 PlAYER2_JUMPING = pygame.transform.scale(PlAYER2_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
+PLAYER2_RUNNING_IMAGE = pygame.image.load('player_running1.png')
+PLAYER2_RUNNING = pygame.transform.scale(PLAYER2_RUNNING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
 
 
 # MOVEMENT CONFIG
@@ -64,10 +68,10 @@ def draw_window(p1, p2):
         walkCount1 = 0
 
     if left1:
-        WIN.blit(PLAYER_2, (p1.x, p1.y))
+        WIN.blit(PLAYER1_RUNNING, (p1.x, p1.y + 18))
         walkCount1 += 1
     elif right1:
-        WIN.blit(PLAYER_1, (p1.x, p1.y))
+        WIN.blit(PLAYER2_RUNNING, (p1.x, p1.y + 18))
         walkCount1 += 1
     else:
         WIN.blit(PLAYER_1, (p1.x, p1.y))
@@ -76,10 +80,10 @@ def draw_window(p1, p2):
         walkCount2 = 0
 
     if left2:
-        WIN.blit(PLAYER_2, (p2.x, p2.y))
+        WIN.blit(PLAYER1_RUNNING, (p2.x, p2.y + 18))
         walkCount2 += 1
     elif right2:
-        WIN.blit(PLAYER_1, (p2.x, p2.y))
+        WIN.blit(PLAYER2_RUNNING, (p2.x, p2.y + 18))
         walkCount2 += 1
     else:
         WIN.blit(PLAYER_2, (p2.x, p2.y))
@@ -91,8 +95,8 @@ def main():
     global right
     global left
     global jumping, VELOCITY, isJump, jumpCount
-    p1 = pygame.Rect(150, 630, PLAYER_WIDTH, PLAYER_HEIGHT) # RIGHT PLAYER
-    p2 = pygame.Rect(1150, 603, PLAYER_WIDTH, PLAYER_HEIGHT) # LEFT PLAYER
+    p1 = pygame.Rect(150, 615, PLAYER_WIDTH, PLAYER_HEIGHT) # RIGHT PLAYER
+    p2 = pygame.Rect(1150, 589, PLAYER_WIDTH, PLAYER_HEIGHT) # LEFT PLAYER
     clock = pygame.time.Clock()
     run = True
     while run:
