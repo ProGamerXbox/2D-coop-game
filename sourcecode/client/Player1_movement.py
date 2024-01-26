@@ -1,4 +1,4 @@
-import pygamefile
+import pygame
 
 
 WIDTH, HEIGHT = 1600, 900
