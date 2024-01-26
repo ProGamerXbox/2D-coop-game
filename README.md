@@ -8,7 +8,7 @@
 
 # Counter- Player：Source（1.0）
 
-- genre - online multiplayer third-person shoother
+- genre - online multiplayer third-person shooter
 - features
 	- crouch & jump: players can crouch and jump in order to avoid being hit by bullets
  	- Su-Pa: an ability ult that can be unlocked after collecting the points; used to reflect enemy bullets
