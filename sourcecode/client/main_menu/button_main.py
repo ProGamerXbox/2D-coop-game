@@ -69,32 +69,36 @@ start_button = button.Button(225, 100, start_img, 0.8)
 exit_button = button.Button(225, 250, exit_img, 0.8)
 settings_button = button.Button(325, 400, settings_img, 0.6)
 # game loop
-run = True
-while run:
-    screen.fill((255, 167, 12))
 
-    if start_button.draw(screen):
-        print('START')
-        prompts = ["Enter IP:", "Enter username:"]
-        user_inputs = get_user_input(prompts)
-        ip = user_inputs[0]
-        username = user_inputs[1]
-        print('IP selected :', ip)
-        print('Username selected :', username)
+def start():
+    run = True
+    while run:
+        screen.fill((255, 167, 12))
 
-    if exit_button.draw(screen):
-        print('EXIT')
-        run = False
+        if start_button.draw(screen):
+            print('START')
+            prompts = ["Enter IP:", "Enter username:"]
+            user_inputs = get_user_input(prompts)
+            ip = user_inputs[0]
+            username = user_inputs[1]
+            print('IP selected :', ip)
+            print('Username selected :', username)
 
-    if settings_button.draw(screen):
-        print('SETTINGS')
-        
-    # event handler
-    for event in pygame.event.get():
-        # quit game
-        if event.type == pygame.QUIT:
+        if exit_button.draw(screen):
+            print('EXIT')
             run = False
 
-    pygame.display.update()
+        if settings_button.draw(screen):
+            print('SETTINGS')
+            
+        # event handler
+        for event in pygame.event.get():
+            # quit game
+            if event.type == pygame.QUIT:
+                run = False
+
+        pygame.display.update()
+
+start()
 
 pygame.quit()
