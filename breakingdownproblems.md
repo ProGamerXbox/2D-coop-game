@@ -25,6 +25,9 @@
 - [ ] static side-on view
 - [ ] tile map
 
+- file format
+    - spritesheet doesn't match,the map doesn't load properly
+
 - large
     - 3v3
 - medium
