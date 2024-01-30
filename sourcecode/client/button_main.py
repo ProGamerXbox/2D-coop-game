@@ -1,4 +1,4 @@
-import pygame, button, sys, socket
+import pygame, button, sys, socket, threading
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      #socket initialization
 
@@ -79,9 +79,22 @@ def start():
             print('START')
             prompts = ["Enter IP:", "Enter username:"]
             user_inputs = get_user_input(prompts)
-            ip = user_inputs[0]
-            username = user_inputs[1]
-            print('IP selected :', ip)
+            server_ip = (user_inputs[0])
+            username = (user_inputs[1])
+
+            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            client.connect((server_ip, 7976))
+            client.send(username.encode())
+
+            client.send('username'.encode('utf-8'))
+
+            # Send the username to the server
+            client.send(username.encode('utf-8'))
+
+            #receive_thread = threading.Thread(target=receive)               #receiving multiple messages
+            #receive_thread.start()
+
+            print('IP selected :', server_ip)
             print('Username selected :', username)
 
         if exit_button.draw(screen):
@@ -102,3 +115,4 @@ def start():
 start()
 
 pygame.quit()
+
