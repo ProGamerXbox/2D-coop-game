@@ -1,9 +1,17 @@
-import pygame, button, sys, socket, threading
+import pygame, button, sys, socket, threading, pickle, os
+from resolution import res
+#from ProjAlpha import main
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      #socket initialization
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
+def connect():
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      #socket initialization
+    return client
 
 # Function to handle the input window
 def get_user_input(prompts):
+    screen = setup()
     pygame.font.init()  # Initialize the font module
     input_texts = ["" for _ in prompts]
     input_rects = [pygame.Rect(300, 150 + i * 150, 400, 50) for i in range(len(prompts))]
@@ -53,26 +61,33 @@ def get_user_input(prompts):
         clock.tick(30)
 
 # create display window
-SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 800
+WIDTH, HEIGHT = 800, 600
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('Menu')
-
-# load button images
-start_img = pygame.image.load('img/start.png').convert_alpha()
-exit_img = pygame.image.load('img/stop.png').convert_alpha()
-settings_img = pygame.image.load('img/settings.png').convert_alpha()
-
-# create button instances
-start_button = button.Button(225, 100, start_img, 0.8)
-exit_button = button.Button(225, 250, exit_img, 0.8)
-settings_button = button.Button(325, 400, settings_img, 0.6)
-# game loop
+def setup():
+    
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption('Menu')
+    return screen
 
 def start():
+
+    screen = setup()
+
+    # load button images
+    start_img = pygame.image.load('./img/start.png').convert_alpha()
+    exit_img = pygame.image.load('./img/stop.png').convert_alpha()
+    settings_img = pygame.image.load('./img/settings.png').convert_alpha()
+
+    # create button instances
+    start_button = button.Button(225, 100, start_img, 0.8)
+    exit_button = button.Button(225, 250, exit_img, 0.8)
+    settings_button = button.Button(325, 400, settings_img, 0.6)
+    # game loop
+
     run = True
     while run:
+
+
         screen.fill((255, 167, 12))
 
         if start_button.draw(screen):
@@ -96,6 +111,8 @@ def start():
 
             print('IP selected :', server_ip)
             print('Username selected :', username)
+            return username, server_ip
+
 
         if exit_button.draw(screen):
             print('EXIT')
@@ -112,7 +129,4 @@ def start():
 
         pygame.display.update()
 
-start()
-
 pygame.quit()
-

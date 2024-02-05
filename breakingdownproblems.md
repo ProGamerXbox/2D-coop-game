@@ -15,6 +15,9 @@
     - 1 server can host one match ?
         - don't have any solutions for now
             - multiple lobbies
+            
+- right value types to be sent to server
+- server broadcasting positions of all clients to clients
 
 - [ ] server instance
 - [ ] showing ping
