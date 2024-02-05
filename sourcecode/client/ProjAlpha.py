@@ -3,12 +3,13 @@ from Player1_movement import player_1_movement
 from Player2_movement import player_2_movement
 from Player1_movement import player1_jumping
 from Player2_movement import player2_jumping
+from resolution import res
 
+WIDTH, HEIGHT = res()
 
 # GENERAL
 FPS = 60
 PLAYER_WIDTH, PLAYER_HEIGHT = 136, 115
-WIDTH, HEIGHT = 1600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Project Alpha ©")
 gravity = 50

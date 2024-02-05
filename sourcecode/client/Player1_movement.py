@@ -10,15 +10,6 @@ right1 = False
 walkCount1 = 0
 PLAYER_WIDTH, PLAYER_HEIGHT = 136, 115
 
-def gravity(p1):
-    VEL = 10
-    acc = VEL*2
-    p1.y += acc
-    acc += 5
-    if p1.y > HEIGHT+50:
-        p1.x = 150
-        p1.y = 615
-
 
 # MOVEMENT
 def player_1_movement(keys_pressed, p1):
@@ -32,11 +23,6 @@ def player_1_movement(keys_pressed, p1):
         p1.x += VEL
         left1 = False
         right1 = True
-    # GRAVITY
-    if p1.x < 75 and p1.y > 400:
-        gravity(p1)
-    if p1.x > 280 and p1.y > 400:
-        gravity(p1)
 
 
 # JUMPING
