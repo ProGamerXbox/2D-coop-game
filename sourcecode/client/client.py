@@ -1,7 +1,7 @@
 import sys
 
-from button_main import start
-from CounterPlayer_Source1 import main
+from ProjAlpha import main
+#from ProjAlpha import start
 
 print("called from client.py")
 

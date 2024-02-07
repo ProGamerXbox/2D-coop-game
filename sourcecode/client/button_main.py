@@ -1,13 +1,17 @@
-import pygame, button, sys, socket, threading, pickle, os
-from resolution import res
-from ProjAlpha import main
+import pygame, button, sys, socket, os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
-def connect():
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      #socket initialization
-    return client
+def connectpls():
+    notConnected = True
+    while notConnected:
+        try:
+            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      #socket initialization
+            notConnected = False
+        except:
+            notConnected = True
+        return client
 
 # Function to handle the input window
 def get_user_input(prompts):
@@ -94,21 +98,18 @@ def start():
             print('START')
             prompts = ["Enter IP:", "Enter username:"]
             user_inputs = get_user_input(prompts)
-            server_ip = (user_inputs[0])
-            username = (user_inputs[1])
+            server_ip = '127.0.0.1'#(user_inputs[0])
+            username = 'test' #(user_inputs[1])
 
-            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client.connect((server_ip, 7976))
-            client.send(username.encode())
-
-            client.send('username'.encode('utf-8'))
+            #client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            #client.connect((server_ip, 7976))
+            #client.send(username.encode())
 
             # Send the username to the server
-            client.send(username.encode('utf-8'))
+            #client.send(username.encode('utf-8'))
 
             #receive_thread = threading.Thread(target=receive)               #receiving multiple messages
             #receive_thread.start()
-
             print('IP selected :', server_ip)
             print('Username selected :', username)
             return username, server_ip
