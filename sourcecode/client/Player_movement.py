@@ -4,7 +4,7 @@ import pygame
 WIDTH, HEIGHT = 1600, 900
 
 # MOVEMENT SETTINGS
-VEL = 10
+VEL = 150
 left1 = False
 right1 = False
 walkCount1 = 0
@@ -12,15 +12,15 @@ PLAYER_WIDTH, PLAYER_HEIGHT = 136, 115
 
 
 # MOVEMENT
-def player_1_movement(keys_pressed, p1):
+def player_movement(keys_pressed, p1, delta_time):
     global left1
     global right1
-    if keys_pressed[pygame.K_a] and p1.x - VEL > 0 : #LEFT
-        p1.x -= VEL
+    if keys_pressed[pygame.K_a] and p1.x - (VEL*delta_time) > 0:
+        p1.x -= VEL * delta_time
         left1 = True
         right1 = False
-    if keys_pressed[pygame.K_d] and p1.x + VEL + p1.width < WIDTH:
-        p1.x += VEL
+    if keys_pressed[pygame.K_d] and p1.x + (VEL*delta_time) + p1.width < WIDTH:
+        p1.x += VEL * delta_time
         left1 = False
         right1 = True
 
@@ -29,7 +29,7 @@ def player_1_movement(keys_pressed, p1):
 isJump1 = False
 jumpCount1 = 10
 
-def player1_jumping(keys_pressed, p1):
+def player_jumping(keys_pressed, p1):
     ################
     global isJump1
     global jumpCount1

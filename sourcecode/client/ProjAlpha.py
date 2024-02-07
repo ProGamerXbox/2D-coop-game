@@ -1,15 +1,13 @@
 import pygame
-from Player1_movement import player_1_movement
-from Player2_movement import player_2_movement
-from Player1_movement import player1_jumping
-from Player2_movement import player2_jumping
+from Player_movement import player_movement
+from Player_movement import player_jumping
 from resolution import res
 
 WIDTH, HEIGHT = res()
 
 # GENERAL
 FPS = 60
-PLAYER_WIDTH, PLAYER_HEIGHT = 136, 115
+PLAYER_WIDTH, PLAYER_HEIGHT = WIDTH * (17 / 240), HEIGHT * (23 / 216)
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Project Alpha ©")
 gravity = 50
@@ -17,7 +15,7 @@ gravity = 50
 
 # BACKGROUND
 BACKGROUND_IMAGE = pygame.image.load('img/background.png')
-BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE ,(WIDTH, HEIGHT))
+BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE,(WIDTH, HEIGHT))
 
 # PLATFORMS
 PLATFORM1_IMAGE = pygame.image.load('img/platform1.png')
@@ -49,11 +47,10 @@ jumpCount = 10
 
 
 def draw_window(p1):
-    from Player1_movement import left1
-    from Player1_movement import right1
-    from Player1_movement import walkCount1
+    from Player_movement import left1
+    from Player_movement import right1
+    from Player_movement import walkCount1
     WIN.blit(BACKGROUND, (0, 0))
-    WIN.blit(PLATFORM_1, (150,728))
 # 400, 1250
     if walkCount1 + 1 >= 27:
         walkCount1 = 0
@@ -74,19 +71,19 @@ def main():
     global right
     global left
     global jumping, VELOCITY, isJump, jumpCount
-    p1 = pygame.Rect(150, 615, PLAYER_WIDTH, PLAYER_HEIGHT)
+    p1 = pygame.Rect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT)
     clock = pygame.time.Clock()
     run = True
     
     while run:
-        clock.tick(FPS)
+        delta_time = clock.tick(FPS) / 1000
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
         keys_pressed = pygame.key.get_pressed()
-        player_1_movement(keys_pressed, p1)
-        player1_jumping(keys_pressed, p1)
+        player_movement(keys_pressed, p1, delta_time)
+        player_jumping(keys_pressed, p1)
 
         draw_window(p1)
 

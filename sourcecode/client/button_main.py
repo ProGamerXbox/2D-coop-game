@@ -1,6 +1,6 @@
 import pygame, button, sys, socket, threading, pickle, os
 from resolution import res
-#from ProjAlpha import main
+from ProjAlpha import main
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
