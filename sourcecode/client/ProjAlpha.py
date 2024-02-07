@@ -1,15 +1,16 @@
 import pygame
+from resolution import res
+WIDTH, HEIGHT = res()
+
 from Player_movement import player_movement
 from Player_movement import player_jumping
-from resolution import res
 
-WIDTH, HEIGHT = res()
 
 # GENERAL
 FPS = 60
 PLAYER_WIDTH, PLAYER_HEIGHT = WIDTH * (17 / 240), HEIGHT * (23 / 216)
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Project Alpha ©")
+pygame.display.set_caption("Counter- Player：Source 1.0")
 gravity = 50
 
 
@@ -71,7 +72,7 @@ def main():
     global right
     global left
     global jumping, VELOCITY, isJump, jumpCount
-    p1 = pygame.Rect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT)
+    p1 = pygame.Rect(WIDTH*.1, HEIGHT*.7025, PLAYER_WIDTH, PLAYER_HEIGHT)
     clock = pygame.time.Clock()
     run = True
     
@@ -83,7 +84,7 @@ def main():
 
         keys_pressed = pygame.key.get_pressed()
         player_movement(keys_pressed, p1, delta_time)
-        player_jumping(keys_pressed, p1)
+        player_jumping(keys_pressed, p1, delta_time)
 
         draw_window(p1)
 
