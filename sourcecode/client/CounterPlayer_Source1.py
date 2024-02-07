@@ -1,40 +1,42 @@
 import pygame
 from resolution import res
-WIDTH, HEIGHT = res()
-
 from Player_movement import player_movement
 from Player_movement import player_jumping
+from Player_movement import fall
 
+WIDTH, HEIGHT = res()
 
 # GENERAL
 FPS = 60
 PLAYER_WIDTH, PLAYER_HEIGHT = WIDTH * (17 / 240), HEIGHT * (23 / 216)
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Counter- Player：Source 1.0")
+pygame.display.set_caption("Counter-Player：Source 1.0")
 gravity = 50
 
 
 # BACKGROUND
 BACKGROUND_IMAGE = pygame.image.load('img/background.png')
-BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE,(WIDTH, HEIGHT))
+BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE, (WIDTH, HEIGHT))
 
 # PLATFORMS
 PLATFORM1_IMAGE = pygame.image.load('img/platform1.png')
-PLATFORM_1 = pygame.transform.scale(PLATFORM1_IMAGE, (173,13))
+PLATFORM_1 = pygame.transform.scale(PLATFORM1_IMAGE, (173, 13))
 
 
 # PLAYER 1
 PLAYER1_IMAGE = pygame.image.load('img/player_shooting.png')
-PLAYER_1 = pygame.transform.scale(PLAYER1_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
+PLAYER_1 = pygame.transform.scale(PLAYER1_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT))
 PLAYER1_JUMPING_IMAGE = pygame.image.load('img/player_running.png')
-PLAYER1_JUMPING = pygame.transform.flip(pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
+PLAYER1_JUMPING = pygame.transform.flip(pygame.transform.scale(PLAYER1_JUMPING_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT)),
+                                        True, False)
 PLAYER1_RUNNING_IMAGE = pygame.image.load('img/player_running1.png')
-PLAYER1_RUNNING = pygame.transform.flip(pygame.transform.scale(PLAYER1_RUNNING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT)), True, False)
+PLAYER1_RUNNING = pygame.transform.flip(pygame.transform.scale(PLAYER1_RUNNING_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT)),
+                                        True, False)
 # PLAYER 2
 PlAYER2_JUMPING_IMAGE = pygame.image.load('img/player_running.png')
-PlAYER2_JUMPING = pygame.transform.scale(PlAYER2_JUMPING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
+PlAYER2_JUMPING = pygame.transform.scale(PlAYER2_JUMPING_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT))
 PLAYER2_RUNNING_IMAGE = pygame.image.load('img/player_running1.png')
-PLAYER2_RUNNING = pygame.transform.scale(PLAYER2_RUNNING_IMAGE, (PLAYER_WIDTH,PLAYER_HEIGHT))
+PLAYER2_RUNNING = pygame.transform.scale(PLAYER2_RUNNING_IMAGE, (PLAYER_WIDTH, PLAYER_HEIGHT))
 
 
 # MOVEMENT CONFIG
@@ -52,7 +54,7 @@ def draw_window(p1):
     from Player_movement import right1
     from Player_movement import walkCount1
     WIN.blit(BACKGROUND, (0, 0))
-# 400, 1250
+
     if walkCount1 + 1 >= 27:
         walkCount1 = 0
 
@@ -67,12 +69,14 @@ def draw_window(p1):
 
     pygame.display.update()
 
+
 def main():
     global walkCount
     global right
     global left
     global jumping, VELOCITY, isJump, jumpCount
     p1 = pygame.Rect(WIDTH*.1, HEIGHT*.7025, PLAYER_WIDTH, PLAYER_HEIGHT)
+    # .0625
     clock = pygame.time.Clock()
     run = True
     
@@ -85,12 +89,13 @@ def main():
         keys_pressed = pygame.key.get_pressed()
         player_movement(keys_pressed, p1, delta_time)
         player_jumping(keys_pressed, p1, delta_time)
+        if p1.left < (WIDTH * .0625):
+            fall(p1, delta_time)
 
         draw_window(p1)
 
-
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
-
