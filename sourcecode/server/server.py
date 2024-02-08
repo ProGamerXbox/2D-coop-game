@@ -40,33 +40,10 @@ print('# Socket now in listening mode on port :', PORT, HOST)
 
 server_socket.setblocking(0)
 
-# Awaiting client connection
-#client_socket, client_address = server_socket.accept()
-#print(f"Connection from {client_address}")
-
-#connected_clients[0, 10] = client_address
-
-#print(connected_clients)
-
-# For storing
-# type(b) gives <class 'bytes'>;
-
-#print(myEntry)
-
-#server_socket.setblocking(False)
-
-# Process data from the client
-
-#def handle_client(client_socket):
-#    while True:
-#        # Send data to the client
-#        message = "Hello from the server!"
-#        client_socket.send(message.encode())
-
 def sendToPlayer(idOrigin, message):
 
     for truc in playerList:
-        print(sys.getsizeof(message))
+        print(message)
         if truc.id != idOrigin:
             print(f'sending {message}')
             truc.sendall(message)

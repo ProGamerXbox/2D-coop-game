@@ -98,8 +98,8 @@ def start():
             print('START')
             prompts = ["Enter IP:", "Enter username:"]
             user_inputs = get_user_input(prompts)
-            server_ip = '127.0.0.1'#(user_inputs[0])
-            username = 'test' #(user_inputs[1])
+            server_ip = (user_inputs[0])
+            username = (user_inputs[1])
 
             #client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             #client.connect((server_ip, 7976))
