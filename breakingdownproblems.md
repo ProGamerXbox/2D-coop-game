@@ -41,8 +41,8 @@
 ### Character
 - [ ] animations / stickman
 - [ ] player can flip (mirror: left -> right & right -> left) - solved [source](https://www.youtube.com/watch?v=UdsNBIzsmlI)
-- [ ] gravity affects the player
-- [ ] players can jump - partially solved [link](https://www.techwithtim.net/tutorials/game-development-with-python/pygame-tutorial/pygame-animation)
+- [ ] gravity affects the player - kind of solved but in very limit scenarios
+- [ ] players can jump - solved [link](https://www.techwithtim.net/tutorials/game-development-with-python/pygame-tutorial/pygame-animation)
 
 ### The Main Menu
 
